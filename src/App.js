@@ -32,18 +32,14 @@ class App extends Component {
 
   RemoveElement = (event) => {
     var currentArray=this.state.Text.split('');
-    
-    var index = currentArray.indexOf('L');
-    if (index > -1) {
-    currentArray.splice(index, 1);
-    }
+    currentArray.splice(event, 1);
+   
     this.setState({
-      charArray:currentArray
+      charArray:currentArray,
+      Text: currentArray.join('')
     })
   }
 
-
-  
   render() {
     
     return (
@@ -53,9 +49,10 @@ class App extends Component {
       <div>
       
       {
-        this.state.charArray.map(el => {
+        this.state.charArray.map((el,index )=> {
          return(
-          <p className="el" key={index} onClick={this.RemoveElement.bind(this, index)}>   {el}  <br /></p>
+          <p className="el"   key={index} onClick={this.RemoveElement.bind(this, index)}>   {el}  <br /></p>
+          
          );
         })
        }
